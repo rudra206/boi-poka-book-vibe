@@ -25,12 +25,12 @@ const router = createBrowserRouter([
         element: <Dashboard></Dashboard>
       }
     ]
-    
+
   },
 ]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-     <RouterProvider router={router} />
+    <RouterProvider router={router} />
   </StrictMode>,
 )
