@@ -1,14 +1,77 @@
-import { useParams } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 
 
 const BookDetail = () => {
-const {bookId} = useParams();
-console.log(bookId);
+    const { bookId } = useParams();
+    // console.log(bookId);
 
+    const data = useLoaderData();
+    // console.log(data);
+
+    const id = parseInt(bookId)
+
+    // console.log(typeof bookId, typeof id, typeof data[0].bookId);
+
+    const book = data.find(book => book.bookId == id);
+    // console.log(book);
+
+    // bookId ,bookName,author,image,image,review,totalPages,rating,category,tags,publisher
     return (
         <div>
             <h2>book Id :{bookId}</h2>
-            {/* <p>Review : {bookId.review}</p> */}
+            <div className=" flex flex-col lg:flex-row mx-5 p-4 gap-2 ">
+                <div className=" rounded-xl w-[573px] shadow-xl  p-[73px] ">
+                    <img className="  w-[425px] h-[564px] mx-auto" src={book.image} alt={book.bookName} />
+                </div>
+
+                <div className="w-[573px]">
+                    <h1 className="font-bold ">{book.bookName}</h1>
+                    <h2>by: {book.author}</h2>
+                    <br />
+                    <div className="border-t-2 border-collapse"></div>
+
+                    <h3>Category: {book.category}</h3>
+                    <div className="border-t-2 border-collapse"></div>
+                    <br />
+
+                    <p><span className="font-bold">Review:</span>{book.review}</p>
+                    <br />
+
+
+
+
+                    <div className="flex justify-start gap-4 shadow-2xl rounded-xl">
+                        <p className="font-bold">Tags:</p>
+                        {
+
+                            book.tags.map((tag, index) => <button key={index} className="btn btn-xs  text-green-600 ">#{tag}</button>)
+                        }
+                    </div> <br />
+                    <div className="border-t-2 border-collapse"></div>
+                    <br />
+                    <div className="flex gap-14">
+                        <div>
+                            <p>Number of Pages:</p>
+                            <p>Publisher:</p>
+                            <p>Year of Publishing:</p>
+                            <p>Rating:</p>
+                        </div>
+                        <div className="font-bold">
+                            <p>{book.totalPages}</p>
+                            <p>{book.publisher}</p>
+                            <p>{book.yearOfPublishing}</p>
+                            <p>{book.rating}</p>
+
+                        </div>
+
+                    </div><br />
+
+                    <button className="btn btn-outline btn-accent m-4">Read</button>
+                    <button className="btn  btn-accent">WishList</button>
+                </div>
+
+
+            </div>
         </div>
     );
 };
