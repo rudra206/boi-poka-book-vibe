@@ -1,4 +1,4 @@
-import React from "react";
+
 // bookId ,bookName,author,image,image,review,totalPages,rating,category,tags,publisher
 
 import { Link } from "react-router-dom";

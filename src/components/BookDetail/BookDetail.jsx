@@ -1,4 +1,4 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 
 
 const BookDetail = () => {
@@ -16,6 +16,13 @@ const BookDetail = () => {
     // console.log(book);
 
     // bookId ,bookName,author,image,image,review,totalPages,rating,category,tags,publisher
+
+    const navigate = useNavigate();
+    const handleBackToBookFromBookDetail = () => {
+        navigate(-1); // one step back
+        // navigate (`/`); // direct path call
+        // jekono ekta hoilei hobe
+    }
     return (
         <div>
             <h2>book Id :{bookId}</h2>
@@ -66,12 +73,48 @@ const BookDetail = () => {
 
                     </div><br />
 
+                    {/* <div >
+                        <div className=" flex">
+                           <div>
+                             <p>Number of Pages:</p>
+                           </div>
+                            <p className="font-bold">{book.totalPages}</p>
+                        </div>
+                        <div className="flex ">
+                            <p>Publisher:</p>
+                            <p className="font-bold">{book.publisher}</p>
+                        </div>
+                        <div className="flex ">
+                            <p>Year of Publishing:</p>
+                            <p className="font-bold">{book.yearOfPublishing}</p>
+                        </div>
+                        <div className="flex ">
+                            <p>Rating:</p>
+                            <p className="font-bold">{book.rating}</p>
+                        </div>
+
+                    </div> */}
+
+
+
+
+
+
+
+
+
                     <button className="btn btn-outline btn-accent m-4">Read</button>
                     <button className="btn  btn-accent">WishList</button>
                 </div>
 
 
             </div>
+            <div className=" m-2 flex justify-center items-center ">
+                <button className=" btn"
+                    onClick={handleBackToBookFromBookDetail}>Go Home</button>
+            </div>
+
+
         </div>
     );
 };
