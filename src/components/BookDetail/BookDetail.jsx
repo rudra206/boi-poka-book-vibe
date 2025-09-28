@@ -1,4 +1,5 @@
 import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { addToStoredList, addToStoreWishList } from "../../Utility/addToDB";
 
 
 const BookDetail = () => {
@@ -22,6 +23,22 @@ const BookDetail = () => {
         navigate(-1); // one step back
         // navigate (`/`); // direct path call
         // jekono ekta hoilei hobe
+    }
+
+    const handleMarkAsRead = (id) => {
+        /**
+               * 1. undderstand what to store  or save : => bokId
+               * 2.where to store:
+               * 3.array,list, collection:
+               * 4.check: if the book is already in the readList.
+               * 5. if not , than add the book to the list
+               * 6. if yes, do not add the book
+               */
+              addToStoredList(id);
+    }
+
+    const handleWishList = (id) =>{
+        addToStoreWishList (id);
     }
     return (
         <div>
@@ -96,15 +113,8 @@ const BookDetail = () => {
                     </div> */}
 
 
-
-
-
-
-
-
-
-                    <button className="btn btn-outline btn-accent m-4">Read</button>
-                    <button className="btn  btn-accent">WishList</button>
+                    <button onClick={() =>handleMarkAsRead (book.bookId)} className="btn btn-outline btn-accent m-4">Mark as Read</button>
+                    <button onClick={() =>handleWishList(book.bookId)} className="btn  btn-accent">Add to WishList</button>
                 </div>
 
 
